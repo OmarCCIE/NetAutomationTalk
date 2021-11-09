@@ -1,0 +1,9 @@
+clock timezone CDT -6 0
+clock summer-time CST recurring
+no ip domain-lookup
+username test password test
+line vty 0 4
+ exec-timeout 0
+line console 0
+ exec-timeout 0
+ session-timeout 0
