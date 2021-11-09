@@ -157,14 +157,16 @@ def main():
 
     for device in device_list:
         getConfig = ""
+
+        #Obtiene la configuración para los routers
         if device_list[device]['rol']  == 'R1' or device_list[device]['rol']  == 'R2':
             getConfig = configRouter(vlanNumber,ip,device_list[device]['rol'])
 
-
+        #Obtiene la configuración para los Switch Core
         if device_list[device]['rol']  == 'SW1' or device_list[device]['rol']  == 'SW2':
             getConfig = configSwitchCore(vlanNumber,ip,device_list[device]['rol'])
             
-
+        #Obtiene la configuración para los Switch Access
         if device_list[device]['rol']  == 'SW3':
             getConfig = configSwitchAccess(vlanNumber,ip,interfaceAccess, modoInterface)
             
