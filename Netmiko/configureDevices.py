@@ -6,10 +6,10 @@ from paramiko.ssh_exception import SSHException
 from netmiko.ssh_exception import AuthenticationException
 
 
-with open('commands_file') as f:
+with open('Netmiko/commands_file') as f:
     commands_to_send = f.read().splitlines()
 
-with open('device_list') as f:
+with open('Netmiko/device_list') as f:
     devices_list = f.read().splitlines()
 
 for devices in devices_list:
