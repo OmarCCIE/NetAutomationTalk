@@ -4,10 +4,7 @@ from netmiko import ConnectHandler
 from netmiko.ssh_exception import NetMikoTimeoutException
 from paramiko.ssh_exception import SSHException
 from netmiko.ssh_exception import AuthenticationException
-import logging
 
-logging.basicConfig(filename='netmiko_global.log', level=logging.DEBUG)
-logger = logging.getLogger("netmiko")
 
 with open('commands_file') as f:
     commands_to_send = f.read().splitlines()
@@ -44,7 +41,6 @@ for devices in devices_list:
         continue
 
     
-    #output = net_connect.send_config_set(commands_to_send)
-    #print(output)
-    print (commands_to_send)
+    output = net_connect.send_config_set(commands_to_send)
+    print(output)
     net_connect.disconnect() 

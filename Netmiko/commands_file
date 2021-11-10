@@ -1,5 +1,5 @@
-clock timezone CDT -6 0
-clock summer-time CST recurring
+clock timezone CST -6 0
+clock summer-time CDT recurring
 no ip domain-lookup
 username test password test
 line vty 0 4

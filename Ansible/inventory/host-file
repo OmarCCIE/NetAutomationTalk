@@ -1,0 +1,25 @@
+[routers]
+R1 ansible_host=10.0.0.51
+R2 ansible_host=10.0.0.52
+
+[routers:vars]
+ansible_become=yes
+ansible_become_method=enable
+ansible_network_os=cisco.ios.ios
+ansible_user=admin  
+ansible_password=Cisco!123
+
+[switches]
+SW1 ansible_host=10.0.0.53
+SW2 ansible_host=10.0.0.54
+SW3 ansible_host=10.0.0.55
+
+[switches:vars]
+ansible_network_os=ios
+ansible_user=admin  
+ansible_password=Cisco!123
+ansible_become=yes
+ansible_become_method=enable
+ansible_network_os=cisco.ios.ios
+ansible_user=admin  
+ansible_password=Cisco!123

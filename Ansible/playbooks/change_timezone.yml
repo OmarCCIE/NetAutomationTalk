@@ -1,0 +1,18 @@
+---
+
+- name: Change timezone
+  hosts: all
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: configure EST timezone
+      cisco.ios.ios_config:
+        commands: 
+          - clock timezone EST -5 0
+          - clock summer-time EDT recurring
+      register: output
+
+    - name: print output
+      debug:
+        var: output

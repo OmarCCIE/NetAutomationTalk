@@ -1,0 +1,21 @@
+---
+
+- name: Configure login banner
+  hosts: all
+  gather_facts: false
+  connection: ansible.netcommon.network_cli
+
+  tasks:
+    - name: Configure login banner
+      cisco.ios.ios_banner:
+        banner: login
+        text: |
+          Bienvenido
+          Introduce credenciales validas
+          El uso indebido sera reportado
+        state: present
+      register: output
+
+    - name: print output
+      debug:
+        var: output
