@@ -10,9 +10,11 @@
       cisco.ios.ios_banner:
         banner: login
         text: |
-          Bienvenido
-          Introduce credenciales validas
-          El uso indebido sera reportado
+          *************************************
+          *  Bienvenido                       *
+          *  Introduce credenciales validas   *
+          *  El uso indebido sera reportado   *
+          *************************************
         state: present
       register: output
 

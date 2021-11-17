@@ -1,0 +1,186 @@
+{
+	"info": {
+		"_postman_id": "2d470638-d852-45ca-b44d-04ac878cc851",
+		"name": "Platica NetAutomation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener configuracion",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://{{R1}}/restconf/data/Cisco-IOS-XE-native:native/"
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener información de interface Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://{{R2}}/restconf/data/Cisco-IOS-XE-native:native/interface/GigabitEthernet=4"
+			},
+			"response": []
+		},
+		{
+			"name": "Configurar interface Gi4 en R2",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Cisco-IOS-XE-native:GigabitEthernet\": {\r\n        \"name\": \"4\",\r\n        \"description\": \"Prueba con Postman utilizando Restconf\",\r\n        \"load-interval\" : \"30\",\r\n        \"ip\": {\r\n            \"address\": {\r\n                \"primary\": {\r\n                    \"address\": \"10.255.255.1\",\r\n                    \"mask\": \"255.255.255.0\"\r\n                }\r\n            }\r\n        },\r\n        \"mop\": {\r\n            \"enabled\": false,\r\n            \"sysid\": false\r\n        },\r\n        \"Cisco-IOS-XE-ethernet:negotiation\": {\r\n            \"auto\": true\r\n        }\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://{{R2}}/restconf/data/Cisco-IOS-XE-native:native/interface/GigabitEthernet"
+			},
+			"response": []
+		},
+		{
+			"name": "Encender interface",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/yang-data+json",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/yang-data+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ietf-interfaces:interface\": {\r\n        \"name\": \"GigabitEthernet4\",\r\n        \"type\": \"iana-if-type:ethernetCsmacd\",\r\n        \"enabled\": true\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://{{R2}}/restconf/data/ietf-interfaces:interfaces/interface=GigabitEthernet4"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "Cisco!123",
+			"username": "admin"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "R1",
+			"value": "10.0.0.61"
+		},
+		{
+			"key": "R2",
+			"value": "10.0.0.62"
+		},
+		{
+			"key": "R3",
+			"value": "10.0.0.63"
+		},
+		{
+			"key": "R4",
+			"value": "10.0.0.64"
+		},
+		{
+			"key": "R5",
+			"value": "10.0.0.65"
+		}
+	]
+}

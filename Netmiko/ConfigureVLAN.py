@@ -36,7 +36,7 @@ device_list = {
 def configRouter(vlan,ip,rol):
     HSRP_IP = f'{ip.network.words[0]}.{ip.network.words[1]}.{ip.network.words[2]}.{int(ip.network.words[3]) + 1}'
     config_set = \
-f'interface gigabitEthernet 0/1.{vlan} \n \
+f'interface GigabitEthernet0/1.{vlan} \n \
 encapsulation dot1q {vlan} \n \
 description VLAN{vlan} \n \
 standby 10 ip {HSRP_IP} \n \

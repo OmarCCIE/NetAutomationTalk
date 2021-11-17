@@ -1,7 +1,7 @@
 ---
 
 - name: Cisco show version
-  hosts: routers
+  hosts: switches
   gather_facts: false
   connection: ansible.netcommon.network_cli
 
@@ -9,8 +9,7 @@
     - name: run show version on the routers
       cisco.ios.ios_command:
         commands: 
-          - show ip interface brief
-          - show ip route
+          - show version | i Version
       register: output
 
     - name: print output
