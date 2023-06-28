@@ -1,3 +1,16 @@
+banner exec ^CC
+******************************************************************************
+* Al acceso a este equipo esta restringido unicamente a personal autorizado  *
+******************************************************************************^C
+banner incoming ^CC
+******************************************************************************
+* Al acceso a este equipo esta restringido unicamente a personal autorizado  *
+******************************************************************************^C
+banner login ^CC
+******************************************************************************
+* Al acceso a este equipo esta restringido unicamente a personal autorizado  *
+******************************************************************************^C
+!
 clock timezone CST -6 0
 clock summer-time CDT recurring
 no ip domain-lookup

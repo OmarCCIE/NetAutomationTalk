@@ -5,32 +5,35 @@
 
 
 from netmiko import ConnectHandler
-from netmiko.ssh_exception import NetMikoTimeoutException
 from paramiko.ssh_exception import SSHException
-from netmiko.ssh_exception import AuthenticationException
 from netaddr import *
 
 device_list = {
     'R1' : {
-        'ip' : '10.0.0.51',
+        'ip' : 'omarlc.ddns.net',
+        'port' : '10001',
         'rol' : 'R1'
     },
     'R2' : {
-        'ip' : '10.0.0.52',
+        'ip' : 'omarlc.ddns.net',
+        'port' : '10002',
         'rol' : 'R2'
     },
     'SW1' : {
-        'ip' : '10.0.0.53',
+        'ip' : 'omarlc.ddns.net',
+        'port' : '10003',
         'rol' : 'SW1'
     },
     'SW2' : {
-        'ip' : '10.0.0.54',
+        'ip' : 'omarlc.ddns.net',
+        'port' : '10004',
         'rol' : 'SW2'
     },
     'SW3' : {
-        'ip' : '10.0.0.55',
+        'ip' : 'omarlc.ddns.net',
+        'port' : '10005',
         'rol' : 'SW3'
-    },
+    }
 }
 
 def configRouter(vlan,ip,rol):
@@ -111,7 +114,7 @@ f'interface GigabitEthernet{interface} \n \
 
     return config_set
 
-def connectAndConfigure(device, managementIP, config):
+def connectAndConfigure(device, managementIP, port, config):
     username = 'admin'
     password = 'Cisco!123'
 
@@ -119,16 +122,12 @@ def connectAndConfigure(device, managementIP, config):
         'device_type' : 'cisco_ios',
         'ip' : managementIP,
         'username' : username,
+        'port' : port,
         'password' : password
     }
     print (f"Conectando a {device} en {managementIP}")
     try:
         net_connect = ConnectHandler(**ios_device)
-    except (AuthenticationException):
-        print ('Authentication Failure: ' + managementIP)
-        
-    except (NetMikoTimeoutException):
-        print ('Timeout to device: ' + managementIP)
         
     except  (EOFError):
         print ('End of file while attempting device ' + managementIP)
@@ -173,7 +172,7 @@ def main():
 
         print (device + ':\n' + getConfig)
 
-        connectAndConfigure(device, device_list[device]['ip'], getConfig.splitlines())
+        connectAndConfigure(device, device_list[device]['ip'], device_list[device]['port'], getConfig.splitlines())
 
 
 if __name__ == '__main__':
